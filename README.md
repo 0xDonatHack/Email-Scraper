@@ -1,5 +1,5 @@
-# Scraping Email From Google Map's 
+# Scraping Email From Google Maps 
 
 "Note":{
-  -This is Not Proper Discription
+  This is Not a Proper Discription
 }
