@@ -295,7 +295,7 @@ async def scrape_google_maps_data():
                 url = f'"{url}"'
 
                 await new_page.close()
-                print(name, rating, reviews, category, address, website, phone, url)
+                print(name, rating, reviews, category, address,city,cuntry,website, phone, url)
                 return { "name": name, "rating": rating, "reviews": reviews, "category": category, "address": address,"city": city,"cuntry": cuntry, "website": website, "phone": phone, "url": url }
 
         # Create a semaphore to limit concurrent tasks
@@ -316,7 +316,7 @@ async def scrape_google_maps_data():
                                     r["reviews"].replace('"', '').replace('"' , ''),
                                     r["category"].replace('"', '').replace('"' , ''),
                                     r["address"].replace('"', '').replace('', '').replace('"' , ''),
-                                    r["city"].replace('"', '').replace('""' , '').replace(',' , ''),
+                                    r["city"].replace('"', '').replace(',' , '').replace('""' , ''),
                                     r["cuntry"].replace('"', '').replace('""' , '').replace(',' , ''),
                                     r["website"].replace('"', '').replace('""' , ''),
                                     r["phone"].replace('"', '').replace('""' , ''),
