@@ -1,4 +1,4 @@
-# #-------------------------------------------Incase Data_Clinig Not Working---------------------------------------------#
+# #-------------------------------------------Incase Data_Cleaning Not Working---------------------------------------------#
 
 # import csv
 
@@ -316,7 +316,7 @@ async def scrape_google_maps_data():
                                     r["reviews"].replace('"', '').replace('"' , ''),
                                     r["category"].replace('"', '').replace('"' , ''),
                                     r["address"].replace('"', '').replace('', '').replace('"' , ''),
-                                    r["city"].replace('"', '').replace(',' , '').replace('""' , ''),
+                                    r["city"].replace("," , '').replace('"', '').replace('""' , ''),
                                     r["cuntry"].replace('"', '').replace('""' , '').replace(',' , ''),
                                     r["website"].replace('"', '').replace('""' , ''),
                                     r["phone"].replace('"', '').replace('""' , ''),
