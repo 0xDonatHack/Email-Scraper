@@ -179,9 +179,27 @@ from asyncio import Semaphore
 
 async def scrape_google_maps_data():
     name_sheet = "hamburg.csv"
+    german_capital_cities = [
+    "Berlin",
+    "Bremen",
+    "Hamburg",
+    "Dresden",
+    "Düsseldorf",
+    "Erfurt",
+    "Hannover",
+    "Kiel",
+    "Magdeburg",
+    "Mainz",
+    "Munich",
+    "Potsdam",
+    "Saarbrücken",
+    "Schwerin",
+    "Stuttgart",
+    "Wiesbaden"
+]
     google_urls = [
-        "https://www.google.com/maps/search/restaurants+in+Berlin,+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu",
-        "https://www.google.com/maps/search/cafes+in+Hamburg,+Germany/@53.5510868,10.0038821,15z/data=!3m1!4b1?entry=pM",
+        f"https://www.google.com/maps/search/restaurants+in+{city},+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu" 
+        for city in german_capital_cities
     ]
     
     print("Execution Time:")
@@ -225,7 +243,9 @@ async def scrape_google_maps_data():
             all_urls.extend(urls)
             await page.close()
 
-        async def scrape_page_data(url, semaphore):
+        last_url_data = {"city": "NA", "country": "NA"}
+
+        async def scrape_page_data(url, semaphore ):
             async with semaphore:
                 new_page = await browser.new_page()
                 try:
@@ -276,9 +296,26 @@ async def scrape_google_maps_data():
                     location_list = location.split(" ")
                 except:
                     pass
-                city = f'"{location_list[-2]}"'
-                cuntry =f'"{location_list[-1]}"'
+                # try:
+                #     city = f'"{location_list[-2]}"'
+                # except:
+                #     city = default_city
+                # try:
+                #     cuntry =f'"{location_list[-1]}"'
+                # except:
+                #     cuntry =default_cuntry
+                city = f'"{location_list[-2]}"' if len(location_list) > 1 else last_url_data["city"]
+                country = f'"{location_list[-1]}"' if location_list else last_url_data["country"]
 
+                # Update last URL data
+                if city != "NA":
+                    last_url_data["city"] = city
+                else:
+                     city = last_url_data["city"]
+                if country != "NA":
+                    last_url_data["country"] = country
+                else:
+                    country = last_url_data["country"]
 
                 website_element = await new_page.query_selector(
                     'a[data-tooltip="Open website"]'
@@ -293,10 +330,9 @@ async def scrape_google_maps_data():
                 phone = f'"{phone}"'
 
                 url = f'"{url}"'
-
                 await new_page.close()
-                print(name, rating, reviews, category, address,city,cuntry,website, phone, url)
-                return { "name": name, "rating": rating, "reviews": reviews, "category": category, "address": address,"city": city,"cuntry": cuntry, "website": website, "phone": phone, "url": url }
+                print(name, rating, reviews, category, address,city,country,website, phone, url)
+                return { "name": name, "rating": rating, "reviews": reviews, "category": category, "address": address,"city": city,"cuntry": country, "website": website, "phone": phone, "url": url }
 
         # Create a semaphore to limit concurrent tasks
         semaphore = Semaphore(5)  # Adjust this number based on your system's capabilities
@@ -321,10 +357,24 @@ async def scrape_google_maps_data():
                                     r["website"].replace('"', '').replace('""' , ''),
                                     r["phone"].replace('"', '').replace('""' , ''),
                                     r["url"].replace('"', '').replace('""' , '')] for r in results]
-
         with open(name_sheet, mode="w", newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerows(csv_rows)
+
+        with open("hamburg.csv", "r", encoding='utf-8') as file:
+                reader = csv.reader(file)
+                data = [row for row in reader]
+
+        for row in data:
+                for i, value in enumerate(row):
+                    row[i] = value.replace('"', '').replace('""' , '')
+                    if i == 4:
+                        row[i] = row[i].replace('', '')
+        with open("hamburg.csv", "w", newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerows(data)
+
+
 
         await browser.close()
 
