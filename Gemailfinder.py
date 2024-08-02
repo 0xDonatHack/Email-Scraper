@@ -181,11 +181,11 @@ urls = []
 rows = []
 
 # Read the existing CSV file
-with open("hamburg.csv", "r", encoding='utf-8') as file:
+with open("output.csv", "r", encoding='utf-8') as file:
     reader = csv.reader(file)
     headers = next(reader)  # Save the headers
     for row in reader:
-        urls.append(row[5].replace('"', '').replace('"', ''))
+        urls.append(row[7].replace('"', '').replace('"', ''))
         rows.append(row)
     print(f"Loaded {len(urls)} URLs")
 
@@ -193,10 +193,11 @@ with open("hamburg.csv", "r", encoding='utf-8') as file:
 async def scrape_emails_from_url(playwright: Playwright, url: str, max_retries=1):
     for attempt in range(max_retries + 1):
         try:
-            browser = await playwright.chromium.launch(headless=False)
+            browser = await playwright.chromium.launch(headless=True)
             context = await browser.new_context()
             page = await context.new_page()
-            await page.goto(url, timeout=30000)  #30 seconds timeout
+            if url != "NA":
+                await page.goto(url, timeout=30000)  #30 seconds timeout
             await page.wait_for_load_state('networkidle', timeout=60000)
             html = await page.content()
             email_addresses = re.findall(r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b', html)
@@ -235,11 +236,11 @@ async def main():
         row.append(email)
     
     # Write the updated data back to the CSV file
-    with open("hamburg.csv", "w", newline='', encoding='utf-8') as file:
+    with open("output.csv", "w", newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         writer.writerows(rows)
     
-    print("Updated CSV file has been created as 'hamburg.csv'")
+    print("Updated CSV file has been created as 'output.csv'")
 
 asyncio.run(main())

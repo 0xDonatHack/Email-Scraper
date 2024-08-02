@@ -170,15 +170,12 @@
 
 #--------------------------------------------------IF YOU WANT TO RUN WITH MULTIPLE URLS----------------------------------------------------------#
 
-
-
-import asyncio
 from playwright.async_api import async_playwright
-import csv
 from asyncio import Semaphore
+import asyncio , csv , time
 
 async def scrape_google_maps_data():
-    name_sheet = "hamburg.csv"
+    name_sheet = "output.csv"
     german_capital_cities = [
     "Berlin",
     "Bremen",
@@ -196,16 +193,17 @@ async def scrape_google_maps_data():
     "Schwerin",
     "Stuttgart",
     "Wiesbaden"
-]
+  ]
     google_urls = [
-        f"https://www.google.com/maps/search/restaurants+in+{city},+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu" 
+        f"https://www.google.com/maps/search/restaurants+in+{city},+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu"
         for city in german_capital_cities
     ]
-    
-    print("Execution Time:")
+
+    start_time = time.time()
+    print("Execution Time: Started")
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
-        
+        browser = await p.chromium.launch(headless=True)
+
         all_urls = []
         for google_url in google_urls:
             page = await browser.new_page()
@@ -287,7 +285,6 @@ async def scrape_google_maps_data():
                 address = await address_element.text_content() if address_element else "NA"
                 address = f'"{address}"'
 
-                
                 City_element = await new_page.query_selector(
                     'button[data-tooltip="Copy plus code"]'
                 )
@@ -296,26 +293,13 @@ async def scrape_google_maps_data():
                     location_list = location.split(" ")
                 except:
                     pass
-                # try:
-                #     city = f'"{location_list[-2]}"'
-                # except:
-                #     city = default_city
-                # try:
-                #     cuntry =f'"{location_list[-1]}"'
-                # except:
-                #     cuntry =default_cuntry
                 city = f'"{location_list[-2]}"' if len(location_list) > 1 else last_url_data["city"]
                 country = f'"{location_list[-1]}"' if location_list else last_url_data["country"]
 
-                # Update last URL data
                 if city != "NA":
                     last_url_data["city"] = city
-                else:
-                     city = last_url_data["city"]
                 if country != "NA":
                     last_url_data["country"] = country
-                else:
-                    country = last_url_data["country"]
 
                 website_element = await new_page.query_selector(
                     'a[data-tooltip="Open website"]'
@@ -331,29 +315,22 @@ async def scrape_google_maps_data():
 
                 url = f'"{url}"'
                 await new_page.close()
-                print(name, rating, reviews, category, address,city,country,website, phone, url)
-                return { "name": name, "rating": rating, "reviews": reviews, "category": category, "address": address,"city": city,"cuntry": country, "website": website, "phone": phone, "url": url }
+                print(name, rating, reviews, category, address, city, country, website, phone, url)
+                return { "name": name, "rating": rating, "reviews": reviews, "category": category, "address": address,"city": city,"country": country, "website": website, "phone": phone, "url": url }
 
-        # Create a semaphore to limit concurrent tasks
-        semaphore = Semaphore(5)  # Adjust this number based on your system's capabilities
-
-        # Create tasks for all URLs
+        semaphore = Semaphore(5)
         tasks = [scrape_page_data(url, semaphore) for url in all_urls]
-
-        # Run all tasks concurrently
         results = await asyncio.gather(*tasks)
-
-        # Filter out None results (failed scrapes)
         results = [result for result in results if result is not None]
 
-        csv_header = ["Name", "Rating", "Reviews", "Category", "Address","city","cuntry" ,"Website", "Phone", "Url"]
+        csv_header = ["Name", "Rating", "Reviews", "Category", "Address","city","country" ,"Website", "Phone", "Url"]
         csv_rows = [csv_header] + [[r["name"].replace('"', '').replace('"' , ''),
                                     r["rating"].replace('"', '').replace('"' , ''),
                                     r["reviews"].replace('"', '').replace('"' , ''),
                                     r["category"].replace('"', '').replace('"' , ''),
                                     r["address"].replace('"', '').replace('', '').replace('"' , ''),
                                     r["city"].replace("," , '').replace('"', '').replace('""' , ''),
-                                    r["cuntry"].replace('"', '').replace('""' , '').replace(',' , ''),
+                                    r["country"].replace('"', '').replace('""' , '').replace(',' , ''),
                                     r["website"].replace('"', '').replace('""' , ''),
                                     r["phone"].replace('"', '').replace('""' , ''),
                                     r["url"].replace('"', '').replace('""' , '')] for r in results]
@@ -361,23 +338,29 @@ async def scrape_google_maps_data():
             writer = csv.writer(file)
             writer.writerows(csv_rows)
 
-        with open("hamburg.csv", "r", encoding='utf-8') as file:
-                reader = csv.reader(file)
-                data = [row for row in reader]
+        with open(name_sheet, "r", encoding='utf-8') as file:
+            reader = csv.reader(file)
+            data = [row for row in reader]
 
         for row in data:
-                for i, value in enumerate(row):
-                    row[i] = value.replace('"', '').replace('""' , '')
-                    if i == 4:
-                        row[i] = row[i].replace('', '')
-        with open("hamburg.csv", "w", newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerows(data)
-
-
+            for i, value in enumerate(row):
+                row[i] = value.replace('"', '').replace('""' , '')
+                if i == 4:
+                    row[i] = row[i].replace('', '')
+        with open(name_sheet, "w", newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
 
         await browser.close()
 
+
+    end_time = time.time()  # End timing
+    elapsed_time = end_time - start_time  # Calculate elapsed time
+    minutes, seconds = divmod(elapsed_time, 60)
+    hours, minutes = divmod(minutes, 60)
+
+    print(f"Execution Time: {int(hours)} hours, {int(minutes)} minutes, {int(seconds)} seconds")
     print("Execution Time: Done")
 
+# Run the async function
 asyncio.run(scrape_google_maps_data())
