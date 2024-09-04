@@ -170,7 +170,7 @@
 
 #--------------------------------------------------IF YOU WANT TO RUN WITH MULTIPLE URLS----------------------------------------------------------#
 
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright # type: ignore
 from asyncio import Semaphore
 import asyncio , csv , time
 
