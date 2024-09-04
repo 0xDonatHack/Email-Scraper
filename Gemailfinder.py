@@ -172,7 +172,7 @@
 #------------------------------------------------------------------------------------------#
 
 
-from playwright.async_api import Playwright, async_playwright
+from playwright.async_api import Playwright, async_playwright # type: ignore
 import asyncio
 import re
 import csv
