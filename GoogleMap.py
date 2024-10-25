@@ -172,31 +172,24 @@
 
 from playwright.async_api import async_playwright # type: ignore
 from asyncio import Semaphore
-import asyncio , csv , time
+import asyncio, csv, time
+import pandas as pd
 
 async def scrape_google_maps_data():
     name_sheet = "output.csv"
-    german_capital_cities = [
-    "Berlin",
-    "Bremen",
-    "Hamburg",
-    "Dresden",
-    "Düsseldorf",
-    "Erfurt",
-    "Hannover",
-    "Kiel",
-    "Magdeburg",
-    "Mainz",
-    "Munich",
-    "Potsdam",
-    "Saarbrücken",
-    "Schwerin",
-    "Stuttgart",
-    "Wiesbaden"
-  ]
+    country_name = "Antigua and Barbuda"
+    
+    def get_capitals_by_country(country_name):
+        df = pd.read_csv('states.csv')
+        capitals_df = df[(df['country_name'] == country_name)]
+        capitals = capitals_df['name'].tolist()
+        return capitals
+    
+    capital_cities = get_capitals_by_country(country_name)
+    print(capital_cities)
     google_urls = [
         f"https://www.google.com/maps/search/restaurants+in+{city},+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu"
-        for city in german_capital_cities
+        for city in capital_cities
     ]
 
     start_time = time.time()
@@ -239,6 +232,7 @@ async def scrape_google_maps_data():
 
             urls = await page.eval_on_selector_all("a", "(links) => links.map(link => link.href).filter(href => href.startsWith('https://www.google.com/maps/place/'))")
             all_urls.extend(urls)
+            print(f"Found {len(urls)} URLs for {google_url}")
             await page.close()
 
         last_url_data = {"city": "NA", "country": "NA"}

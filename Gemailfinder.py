@@ -174,8 +174,7 @@
 
 from playwright.async_api import Playwright, async_playwright # type: ignore
 import asyncio
-import re
-import csv
+import re , csv
 
 urls = []
 rows = []
