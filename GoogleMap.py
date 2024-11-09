@@ -179,7 +179,7 @@ import pandas as pd
 
 async def scrape_google_maps_data():
     name_sheet = "output.csv"
-    country_name = "Antigua and Barbuda"
+    # country_name = "Antigua and Barbuda"
     
     def get_capitals_by_country(country_name):
         df = pd.read_csv('states.csv')
@@ -187,10 +187,10 @@ async def scrape_google_maps_data():
         capitals = capitals_df['name'].tolist()
         return capitals
     
-    capital_cities = get_capitals_by_country(country_name)
-    print(capital_cities)
+    # capital_cities = get_capitals_by_country(country_name)
+    # print(capital_cities)
     google_urls = [
-        "https://www.google.com/maps/search/restaurants+in+Arnis,+Germany/@53.0190216,10.3987354,8z/data=!3m1!4b1?entry=ttu"
+        "https://www.google.com/maps/search/restaurants in amreli , gujrat"
     ]
         # for city in capital_cities
 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d26d663a3b00aaab31b9ba5872ddda85 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_d26d663a3b00aaab31b9ba5872ddda85" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d26d663a3b00aaab31b9ba5872ddda85 = L.map(
+                "map_d26d663a3b00aaab31b9ba5872ddda85",
+                {
+                    center: [-23.2335499, 17.3231107],
+                    crs: L.CRS.EPSG3857,
+                    maxBounds: [[-90, -180], [90, 180]],
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8047829338456bb4947b619d95de57b7 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_8047829338456bb4947b619d95de57b7.addTo(map_d26d663a3b00aaab31b9ba5872ddda85);
+        
+    
+            var marker_cluster_fa17d39c6e3e396f315ba91bc3f05557 = L.markerClusterGroup(
+                {}
+            );
+        
+    
+            var marker_98b58b35c958a5644f659a76efd6a9fb = L.marker(
+                [54.11666635, 12.08474840672269],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_08518442126bcde6e77880b744acdb1d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_98b58b35c958a5644f659a76efd6a9fb.setIcon(icon_08518442126bcde6e77880b744acdb1d);
+        
+    
+        var popup_de4c632a183a974ae2161b4650e9a264 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cfb18d5bd6a50b3fef5d928c6eea050b = $(`<div id="html_cfb18d5bd6a50b3fef5d928c6eea050b" style="width: 100.0%; height: 100.0%;">Fischerweg 18, 18069 Rostock, Germany</div>`)[0];
+                popup_de4c632a183a974ae2161b4650e9a264.setContent(html_cfb18d5bd6a50b3fef5d928c6eea050b);
+            
+        
+
+        marker_98b58b35c958a5644f659a76efd6a9fb.bindPopup(popup_de4c632a183a974ae2161b4650e9a264)
+        ;
+
+        
+    
+    
+            var marker_bdf0913021b9667c850e80fb3f35fea3 = L.marker(
+                [53.51311005, 8.115278225098187],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_f47878d4c2c0fff7440a0b8c384c7f7f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_bdf0913021b9667c850e80fb3f35fea3.setIcon(icon_f47878d4c2c0fff7440a0b8c384c7f7f);
+        
+    
+        var popup_934d4cda0285387b2ad2f0ff614fd32f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_87efd29b42e92206f536c6b4d20b943a = $(`<div id="html_87efd29b42e92206f536c6b4d20b943a" style="width: 100.0%; height: 100.0%;">Jadeallee 46, 26382 Wilhelmshaven, Germany</div>`)[0];
+                popup_934d4cda0285387b2ad2f0ff614fd32f.setContent(html_87efd29b42e92206f536c6b4d20b943a);
+            
+        
+
+        marker_bdf0913021b9667c850e80fb3f35fea3.bindPopup(popup_934d4cda0285387b2ad2f0ff614fd32f)
+        ;
+
+        
+    
+    
+            var marker_7d5518fdcd0987fdedb9f6969af5ab4c = L.marker(
+                [54.6300272, 9.931449195982283],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_05971151f41dfe2c0d40d1b7de2ef6d0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7d5518fdcd0987fdedb9f6969af5ab4c.setIcon(icon_05971151f41dfe2c0d40d1b7de2ef6d0);
+        
+    
+        var popup_9f0a07d70243a9764a68dd438c573e61 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6db2f185526acd96c86e32ef25b31757 = $(`<div id="html_6db2f185526acd96c86e32ef25b31757" style="width: 100.0%; height: 100.0%;">Lange Str. 9, 24399 Arnis, Germany</div>`)[0];
+                popup_9f0a07d70243a9764a68dd438c573e61.setContent(html_6db2f185526acd96c86e32ef25b31757);
+            
+        
+
+        marker_7d5518fdcd0987fdedb9f6969af5ab4c.bindPopup(popup_9f0a07d70243a9764a68dd438c573e61)
+        ;
+
+        
+    
+    
+            var marker_aa6ff9dd4733868ea25064c54e0c8688 = L.marker(
+                [52.8778672, 10.1194681],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_3e7e62d45fd24c323f30b00e4137e144 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_aa6ff9dd4733868ea25064c54e0c8688.setIcon(icon_3e7e62d45fd24c323f30b00e4137e144);
+        
+    
+        var popup_88b68fcb7469fda1868429ffe2c2560a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7100338777e7e6cfb98ff04162b21e7b = $(`<div id="html_7100338777e7e6cfb98ff04162b21e7b" style="width: 100.0%; height: 100.0%;">Schulstraße 11A, 29328 Faßberg, Germany</div>`)[0];
+                popup_88b68fcb7469fda1868429ffe2c2560a.setContent(html_7100338777e7e6cfb98ff04162b21e7b);
+            
+        
+
+        marker_aa6ff9dd4733868ea25064c54e0c8688.bindPopup(popup_88b68fcb7469fda1868429ffe2c2560a)
+        ;
+
+        
+    
+    
+            var marker_d191019c135079a211b877d0c28107c4 = L.marker(
+                [-23.2335499, 17.3231107],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_ab351a6f64b1172024f80801bf153460 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d191019c135079a211b877d0c28107c4.setIcon(icon_ab351a6f64b1172024f80801bf153460);
+        
+    
+        var popup_4fb0519e6cae09e67ce71d4b483cff0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d3cc32eacdc13f21a963a4b84cbc936a = $(`<div id="html_d3cc32eacdc13f21a963a4b84cbc936a" style="width: 100.0%; height: 100.0%;">nan</div>`)[0];
+                popup_4fb0519e6cae09e67ce71d4b483cff0a.setContent(html_d3cc32eacdc13f21a963a4b84cbc936a);
+            
+        
+
+        marker_d191019c135079a211b877d0c28107c4.bindPopup(popup_4fb0519e6cae09e67ce71d4b483cff0a)
+        ;
+
+        
+    
+    
+            var marker_dba0a46e224d510497bf69ac2bb0d781 = L.marker(
+                [54.6334362, 9.9290382852522],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_1464c15027d05157edf6ee9512120fd2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dba0a46e224d510497bf69ac2bb0d781.setIcon(icon_1464c15027d05157edf6ee9512120fd2);
+        
+    
+        var popup_1baf3cfc62ce655c7c67a51c72c8997a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9557f42ea45b4c69279aae625645a1bc = $(`<div id="html_9557f42ea45b4c69279aae625645a1bc" style="width: 100.0%; height: 100.0%;">Friedenshöher Str. 21, 24376 Grödersby, Germany</div>`)[0];
+                popup_1baf3cfc62ce655c7c67a51c72c8997a.setContent(html_9557f42ea45b4c69279aae625645a1bc);
+            
+        
+
+        marker_dba0a46e224d510497bf69ac2bb0d781.bindPopup(popup_1baf3cfc62ce655c7c67a51c72c8997a)
+        ;
+
+        
+    
+    
+            var marker_649eee64419b40933e9cb4ace62de036 = L.marker(
+                [54.6309212, 9.933048304280147],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_e24b3d809824faac33eea02185e485b2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_649eee64419b40933e9cb4ace62de036.setIcon(icon_e24b3d809824faac33eea02185e485b2);
+        
+    
+        var popup_896d48e6ede5004f325b5548352bae1a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a8924efdb0e066be83b772a2f2ac9a3b = $(`<div id="html_a8924efdb0e066be83b772a2f2ac9a3b" style="width: 100.0%; height: 100.0%;">Lange Str. 21, 24399 Arnis, Germany</div>`)[0];
+                popup_896d48e6ede5004f325b5548352bae1a.setContent(html_a8924efdb0e066be83b772a2f2ac9a3b);
+            
+        
+
+        marker_649eee64419b40933e9cb4ace62de036.bindPopup(popup_896d48e6ede5004f325b5548352bae1a)
+        ;
+
+        
+    
+    
+            var marker_2cf7b5cabb39c4962bda743e747ae45c = L.marker(
+                [54.6305416, 9.93163150542465],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_a5c19d8429d6a518c0925db6fe61acaf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2cf7b5cabb39c4962bda743e747ae45c.setIcon(icon_a5c19d8429d6a518c0925db6fe61acaf);
+        
+    
+        var popup_a03238bd30b7e22b1a3083d725bd82f8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_386b72d258abb2ce21a94f91b4d5caa5 = $(`<div id="html_386b72d258abb2ce21a94f91b4d5caa5" style="width: 100.0%; height: 100.0%;">Lange Str. 85, 24399 Arnis, Germany</div>`)[0];
+                popup_a03238bd30b7e22b1a3083d725bd82f8.setContent(html_386b72d258abb2ce21a94f91b4d5caa5);
+            
+        
+
+        marker_2cf7b5cabb39c4962bda743e747ae45c.bindPopup(popup_a03238bd30b7e22b1a3083d725bd82f8)
+        ;
+
+        
+    
+    
+            var marker_67885c1ad1f70d2a7ac0b15c2acd7eb2 = L.marker(
+                [54.62882505, 9.932655891781383],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_f3a91ee019adf23fdc6103061195e2d7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_67885c1ad1f70d2a7ac0b15c2acd7eb2.setIcon(icon_f3a91ee019adf23fdc6103061195e2d7);
+        
+    
+        var popup_f1cc2ef5a519ff7dc96be93f87026712 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6ad90093c6b3e5e530527a2c6b4bad9a = $(`<div id="html_6ad90093c6b3e5e530527a2c6b4bad9a" style="width: 100.0%; height: 100.0%;">Strandweg 125, 24399 Arnis, Germany</div>`)[0];
+                popup_f1cc2ef5a519ff7dc96be93f87026712.setContent(html_6ad90093c6b3e5e530527a2c6b4bad9a);
+            
+        
+
+        marker_67885c1ad1f70d2a7ac0b15c2acd7eb2.bindPopup(popup_f1cc2ef5a519ff7dc96be93f87026712)
+        ;
+
+        
+    
+    
+            var marker_9db7b8e88dd5d591c0870ec5cf0bbec9 = L.marker(
+                [54.62784775, 9.929320298867529],
+                {"maxBounds": true, "maxLat": 85, "maxLon": 180, "minLat": -85, "minLon": -180}
+            ).addTo(marker_cluster_fa17d39c6e3e396f315ba91bc3f05557);
+        
+    
+            var icon_b3d2eee16227397c7accabe2faa3dda2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9db7b8e88dd5d591c0870ec5cf0bbec9.setIcon(icon_b3d2eee16227397c7accabe2faa3dda2);
+        
+    
+        var popup_5c1c3c18752255c84e8c96afaa86bdb4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b1f6ff5e9ad65dbca73b25ae6a620bc8 = $(`<div id="html_b1f6ff5e9ad65dbca73b25ae6a620bc8" style="width: 100.0%; height: 100.0%;">Strandweg 123, 24399 Arnis, Germany</div>`)[0];
+                popup_5c1c3c18752255c84e8c96afaa86bdb4.setContent(html_b1f6ff5e9ad65dbca73b25ae6a620bc8);
+            
+        
+
+        marker_9db7b8e88dd5d591c0870ec5cf0bbec9.bindPopup(popup_5c1c3c18752255c84e8c96afaa86bdb4)
+        ;
+
+        
+    
+    
+            marker_cluster_fa17d39c6e3e396f315ba91bc3f05557.addTo(map_d26d663a3b00aaab31b9ba5872ddda85);
+        
+</script>
+</html>
