@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Make HTTP request to analyzer
         run: curl -X GET "https://analyzer-sczh.onrender.com"
-        run: curl -X GET "https://flowise-7wwo.onrender.com"
+       # run: curl -X GET "https://flowise-7wwo.onrender.com"
