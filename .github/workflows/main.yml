@@ -1,0 +1,15 @@
+name: Trigger Analyzer Every Minute
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Runs every minute
+
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make HTTP request to analyzer
+        run: curl -X GET "https://analyzer-sczh.onrender.com"
+        run: curl -X GET "https://flowise-7wwo.onrender.com"
