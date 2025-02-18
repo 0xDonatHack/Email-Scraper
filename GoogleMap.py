@@ -197,7 +197,7 @@ async def scrape_google_maps_data():
     start_time = time.time()
     print("Execution Time: Started")
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=False)
 
         all_urls = []
         for google_url in google_urls:
