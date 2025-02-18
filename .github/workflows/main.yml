@@ -2,7 +2,7 @@ name: Watch Analyzer and Flowise Every Minute
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Runs every minute
+    - cron: '0 0 * * *'  # Runs every minute
 
   workflow_dispatch:  # Allows manual triggering
 
@@ -15,3 +15,6 @@ jobs:
 
       - name: Make HTTP request to Flowise
         run: curl -X GET "https://flowise-7wwo.onrender.com"
+
+      - name: Make HTTP request to locadata
+        run: curl -X GET "https://locadata.onrender.com"
